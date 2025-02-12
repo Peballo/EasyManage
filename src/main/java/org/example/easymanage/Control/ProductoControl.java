@@ -1,11 +1,15 @@
 package org.example.easymanage.Control;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.beans.property.*;
 import org.example.easymanage.Logica.ProductoLogica;
 import org.example.easymanage.Modelo.Producto;
+
+import java.util.Optional;
 
 public class ProductoControl {
     @FXML private TableView<Producto> TablaProductos;
@@ -31,11 +35,11 @@ public class ProductoControl {
     @FXML
     public void initialize() {
         // Configuración de columnas
-        CodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
-        NameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        DescriptionColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
-        PriceColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrecio()).asObject());
-        StockColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getStock()).asObject());
+        CodeColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
+        NameColumn.setCellValueFactory(cellData -> cellData.getValue().nombreProperty());
+        DescriptionColumn.setCellValueFactory(cellData -> cellData.getValue().descripcionProperty());
+        PriceColumn.setCellValueFactory(cellData -> cellData.getValue().precioProperty().asObject());
+        StockColumn.setCellValueFactory(cellData -> cellData.getValue().stockProperty().asObject());
 
         // Cargar productos en la tabla
         cargarProductos();
@@ -51,7 +55,7 @@ public class ProductoControl {
 
     @FXML
     private void insertarProducto(ActionEvent event) {
-        imprimirCampos(); // <-- Esto nos dirá exactamente qué está recibiendo el sistema
+        imprimirCampos();
 
         if (!validarCampos()) {
             return;
@@ -65,7 +69,10 @@ public class ProductoControl {
                     Integer.parseInt(StockField.getText().trim())
             );
 
-            productoLogica.inserterProducto(producto);
+            // Insertar en MongoDB y obtener el ID generado
+            String idGenerado = productoLogica.insertarProducto(producto);
+            producto.setId(idGenerado);
+
             TablaProductos.getItems().add(producto);
             limpiarCampos();
         } catch (Exception e) {
@@ -73,58 +80,88 @@ public class ProductoControl {
         }
     }
 
-
     @FXML
-    private void eliminarProducto(ActionEvent event) {
-        Producto seleccionado = TablaProductos.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
-            try {
-                productoLogica.eliminarProducto(seleccionado.getId());
-                TablaProductos.getItems().remove(seleccionado);
-            } catch (Exception e) {
-                mostrarAlerta("Error al eliminar producto: " + e.getMessage());
-            }
-        } else {
-            mostrarAlerta("Seleccione un producto para eliminar.");
+    public void eliminarProducto() {
+        Producto productoSeleccionado = TablaProductos.getSelectionModel().getSelectedItem();
+
+        if (productoSeleccionado == null) {
+            mostrarAlerta("Debe seleccionar un producto para eliminar.");
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar eliminación");
+        confirmacion.setHeaderText("¿Está seguro de que desea eliminar este producto?");
+        confirmacion.setContentText("Esta acción no se puede deshacer.");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            productoLogica.eliminarProducto(productoSeleccionado.getId());
+            TablaProductos.getItems().remove(productoSeleccionado);
+            mostrarAlerta("Producto eliminado correctamente.");
         }
     }
 
-    @FXML
-    private void actualizarProducto(ActionEvent event) {
-        imprimirCampos(); // Para depuración
-        if (!validarCampos()) return;
 
-        Producto seleccionado = TablaProductos.getSelectionModel().getSelectedItem();
-        if (seleccionado != null) {
+    @FXML
+    public void actualizarProducto() {
+        Producto productoSeleccionado = TablaProductos.getSelectionModel().getSelectedItem();
+
+        if (productoSeleccionado == null) {
+            mostrarAlerta("Debe seleccionar un producto para actualizar.");
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmar actualización");
+        confirmacion.setHeaderText("¿Está seguro de que desea actualizar este producto?");
+        confirmacion.setContentText("Esta acción modificará la información del producto en la base de datos.");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             try {
-                Producto producto = new Producto(
-                        NameField.getText().trim(),
-                        DescriptionField.getText().trim(),
-                        Double.parseDouble(PriceField.getText().trim()),
-                        Integer.parseInt(StockField.getText().trim())
-                );
-                productoLogica.actualizarProducto(seleccionado.getId(), producto);
+                String nombre = NameField.getText();
+                String descripcion = DescriptionField.getText();
+                Double precio = Double.parseDouble(PriceField.getText());
+                Integer stock = Integer.parseInt(StockField.getText());
+
+                productoSeleccionado.setNombre(nombre);
+                productoSeleccionado.setDescripcion(descripcion);
+                productoSeleccionado.setPrecio(precio);
+                productoSeleccionado.setStock(stock);
+
+                productoLogica.actualizarProducto(productoSeleccionado.getId(), productoSeleccionado);
                 TablaProductos.refresh();
-                limpiarCampos();
-            } catch (Exception e) {
-                mostrarAlerta("Error al actualizar producto: " + e.getMessage());
+                mostrarAlerta("Producto actualizado correctamente.");
+            } catch (NumberFormatException e) {
+                mostrarAlerta("Error en los valores ingresados. Verifique los datos.");
             }
-        } else {
-            mostrarAlerta("Seleccione un producto para actualizar.");
         }
     }
+
+
 
     @FXML
     private void buscarProducto(ActionEvent event) {
-        try {
-            Producto producto = productoLogica.buscarProducto(SearchField.getText().trim());
-            if (producto != null) {
-                TablaProductos.getItems().setAll(producto);
-            } else {
-                mostrarAlerta("No se encontró el producto.");
+        String texto = SearchField.getText();  // Obtenemos el texto de búsqueda del campo de texto
+
+        if (texto.isEmpty()) {
+            // Si el texto está vacío, mostramos todos los productos en la tabla
+            TablaProductos.setItems(FXCollections.observableArrayList(productoLogica.obtenerTodosLosProductos()));
+        } else {
+            // Si hay texto, filtramos los productos según el texto ingresado
+            ObservableList<Producto> productosFiltrados = FXCollections.observableArrayList();
+            for (Producto producto : productoLogica.obtenerTodosLosProductos()) {
+                if (String.valueOf(producto.getId()).contains(texto) ||
+                        producto.getNombre().toLowerCase().contains(texto.toLowerCase()) ||
+                        producto.getDescripcion().toLowerCase().contains(texto.toLowerCase()) ||
+                        String.valueOf(producto.getPrecio()).contains(texto) ||
+                        String.valueOf(producto.getStock()).contains(texto)) {
+                    productosFiltrados.add(producto);
+                }
             }
-        } catch (Exception e) {
-            mostrarAlerta("Error al buscar producto: " + e.getMessage());
+            // Actualizamos la tabla con los productos filtrados
+            TablaProductos.setItems(productosFiltrados);
         }
     }
 

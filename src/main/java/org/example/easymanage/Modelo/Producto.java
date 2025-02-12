@@ -1,82 +1,81 @@
 package org.example.easymanage.Modelo;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import javafx.beans.property.*;
 
 public class Producto {
+    private final StringProperty id;
+    private final StringProperty nombre;
+    private final StringProperty descripcion;
+    private final DoubleProperty precio;
+    private final IntegerProperty stock;
 
-    private PropertyChangeSupport propertyChangeSupport;
-    private String id;
-    private String nombre;
-    private String descripcion;
-    private Double precio;
-    private Integer stock;
-
-    public Producto() {
-        propertyChangeSupport = new PropertyChangeSupport(this);
+    public Producto(String nombre, String descripcion, double precio, int stock) {
+        this.id = new SimpleStringProperty();
+        this.nombre = new SimpleStringProperty(nombre);
+        this.descripcion = new SimpleStringProperty(descripcion);
+        this.precio = new SimpleDoubleProperty(precio);
+        this.stock = new SimpleIntegerProperty(stock);
     }
 
-    public Producto(String nombre, String descripcion, Double precio, Integer stock) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.stock = stock;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombreNuevo) {
-        String oldNombre = nombre;
-        nombre = nombreNuevo;
-        propertyChangeSupport.firePropertyChange("nombre", oldNombre, nombre);
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcionNuevo) {
-        String oldDescripcion = descripcion;
-        descripcion = descripcionNuevo;
-        propertyChangeSupport.firePropertyChange("descripcion", oldDescripcion, descripcion);
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precioNuevo) {
-        Double oldPrecio = precio;
-        precio = precioNuevo;
-        propertyChangeSupport.firePropertyChange("precio", oldPrecio, precio);
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stockNuevo) {
-        Integer oldStock = stock;
-        stock = stockNuevo;
-        propertyChangeSupport.firePropertyChange("stock", oldStock, stock);
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
-    }
-
-    public String getId() {
+    // Métodos getters y setters
+    public StringProperty idProperty() {
         return id;
     }
 
+    public String getId() {
+        return id.get();
+    }
+
     public void setId(String id) {
-        this.id = id;
+        this.id.set(id);
+    }
+
+    public StringProperty nombreProperty() {
+        return nombre;
+    }
+
+    public String getNombre() {
+        return nombre.get();
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre.set(nombre);
+    }
+
+    public StringProperty descripcionProperty() {
+        return descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion.get();
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion.set(descripcion);
+    }
+
+    public DoubleProperty precioProperty() {
+        return precio;
+    }
+
+    public double getPrecio() {
+        return precio.get();
+    }
+
+    public void setPrecio(double precio) {
+        this.precio.set(precio);
+    }
+
+    public IntegerProperty stockProperty() {
+        return stock;
+    }
+
+    public int getStock() {
+        return stock.get();
+    }
+
+    public void setStock(int stock) {
+        this.stock.set(stock);
     }
 }
 
