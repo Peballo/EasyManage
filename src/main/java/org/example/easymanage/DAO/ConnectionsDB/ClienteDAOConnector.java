@@ -22,6 +22,7 @@ public class ClienteDAOConnector implements ClienteDAO {
     @Override
     public String insertar(Cliente cliente) {
         Document doc = new Document("nombre", cliente.getNombre())
+                .append("direccion", cliente.getDireccion())
                 .append("telefono", cliente.getTelefono())
                 .append("email", cliente.getEmail())
                 .append("fechaDeRegistro", cliente.getFechaDeRegistro());

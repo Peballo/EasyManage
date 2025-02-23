@@ -315,7 +315,7 @@ public class Control {
 
     @FXML
     private void buscarCliente(ActionEvent event) {
-        String texto = SearchField.getText().trim().toLowerCase();
+        String texto = SearchField1.getText().trim().toLowerCase();
         ObservableList<Cliente> clientes = FXCollections.observableArrayList(clienteLogica.obtenerTodosLosProductos());
         if (!texto.isEmpty()) {
             clientes = clientes.filtered(cliente ->

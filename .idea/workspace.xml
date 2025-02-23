@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ddd8f7ad-00e1-46fe-95df-84f0bc7e1b9f" name="Changes" comment="Ya funciona productos">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ClienteDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ClienteDAOConnector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Logica/ClienteLogica.java" afterDir="false" />
+    <list default="true" id="ddd8f7ad-00e1-46fe-95df-84f0bc7e1b9f" name="Changes" comment="Hola Clientes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/ProductoControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/Control.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/easymanage/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/easymanage/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/Control.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ClienteDAOConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ClienteDAOConnector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +123,7 @@
       <workItem from="1739894900934" duration="13000" />
       <workItem from="1739978415791" duration="531000" />
       <workItem from="1740154070333" duration="8000" />
-      <workItem from="1740315862754" duration="9827000" />
+      <workItem from="1740315862754" duration="11204000" />
     </task>
     <task id="LOCAL-00001" summary="Primer Commit">
       <option name="closed" value="true" />
@@ -147,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739388185430</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hola Clientes">
+      <option name="closed" value="true" />
+      <created>1740330606614</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740330606614</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +158,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer Commit" />
     <MESSAGE value="Ya funciona productos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ya funciona productos" />
+    <MESSAGE value="Hola Clientes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hola Clientes" />
   </component>
 </project>
