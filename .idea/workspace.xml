@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ddd8f7ad-00e1-46fe-95df-84f0bc7e1b9f" name="Changes" comment="Primer Commit">
+    <list default="true" id="ddd8f7ad-00e1-46fe-95df-84f0bc7e1b9f" name="Changes" comment="Ya funciona productos">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ClienteDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ClienteDAOConnector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Logica/ClienteLogica.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/ProductoControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/ProductoControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ProductoDAOConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ConnectionsDB/ProductoDAOConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/ProductoControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Control/Control.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ProductoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/DAO/ProductoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Logica/ProductoLogica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Logica/ProductoLogica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/easymanage/Modelo/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/easymanage/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/easymanage/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JavaFXApplication" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -57,25 +61,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;23&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Usuario/IdeaProjects/EasyManage&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "23",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Usuario/IdeaProjects/EasyManage",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.easymanage.Main.Main" />
@@ -118,7 +124,12 @@
       <workItem from="1739204292916" duration="6432000" />
       <workItem from="1739215105691" duration="3374000" />
       <workItem from="1739283716139" duration="2762000" />
-      <workItem from="1739370174722" duration="8246000" />
+      <workItem from="1739370174722" duration="8311000" />
+      <workItem from="1739469885090" duration="153000" />
+      <workItem from="1739894900934" duration="13000" />
+      <workItem from="1739978415791" duration="531000" />
+      <workItem from="1740154070333" duration="8000" />
+      <workItem from="1740315862754" duration="9827000" />
     </task>
     <task id="LOCAL-00001" summary="Primer Commit">
       <option name="closed" value="true" />
@@ -128,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739218147131</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ya funciona productos">
+      <option name="closed" value="true" />
+      <created>1739388185430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739388185430</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Primer Commit" />
+    <MESSAGE value="Ya funciona productos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ya funciona productos" />
   </component>
 </project>

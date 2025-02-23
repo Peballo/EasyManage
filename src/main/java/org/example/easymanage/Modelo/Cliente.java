@@ -1,79 +1,95 @@
 package org.example.easymanage.Modelo;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import javafx.beans.property.*;
 import java.util.Date;
 
 public class Cliente {
-
-    private PropertyChangeSupport propertyChangeSupport;
-
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    private String email;
-    private Date fechaDeRegistro;
-
-    public Cliente() {}
+    private final StringProperty id;
+    private final StringProperty nombre;
+    private final StringProperty direccion;
+    private final StringProperty telefono;
+    private final StringProperty email;
+    private final ObjectProperty<Date> fechaDeRegistro;
 
     public Cliente(String nombre, String direccion, String telefono, String email, Date fechaDeRegistro) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-        this.fechaDeRegistro = new Date();
+        this.id = new SimpleStringProperty();
+        this.nombre = new SimpleStringProperty(nombre);
+        this.direccion = new SimpleStringProperty(direccion);
+        this.telefono = new SimpleStringProperty(telefono);
+        this.email = new SimpleStringProperty(email);
+        this.fechaDeRegistro = new SimpleObjectProperty<>(fechaDeRegistro);
+    }
+
+    // Métodos getters y setters
+    public StringProperty idProperty() {
+        return id;
+    }
+
+    public String getId() {
+        return id.get();
+    }
+
+    public void setId(String id) {
+        this.id.set(id);
+    }
+
+    public StringProperty nombreProperty() {
+        return nombre;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
-    public void setNombre(String nombreNuevo) {
-        String nombreViejo = this.nombre;
-        this.nombre = nombreNuevo;
 
-        propertyChangeSupport.firePropertyChange("name", nombreViejo, nombreNuevo);
+    public void setNombre(String nombre) {
+        this.nombre.set(nombre);
     }
-    public String getDireccion() {
+
+    public StringProperty direccionProperty() {
         return direccion;
     }
-    public void setDireccion(String direccionNuevo) {
-        String direccionViejo = this.direccion;
-        this.direccion = direccionNuevo;
 
-        propertyChangeSupport.firePropertyChange("direccion", direccionViejo, direccionNuevo);
+    public String getDireccion() {
+        return direccion.get();
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion.set(direccion);
+    }
+
+    public StringProperty telefonoProperty() {
+        return telefono;
     }
 
     public String getTelefono() {
-        return telefono;
+        return telefono.get();
     }
-    public void setTelefono(String telefonoNuevo) {
-        String telefonoViejo = this.telefono;
-        this.telefono = telefonoNuevo;
-        propertyChangeSupport.firePropertyChange("telefono", telefonoViejo, telefonoNuevo);
+
+    public void setTelefono(String telefono) {
+        this.telefono.set(telefono);
     }
-    public String getEmail() {
+
+    public StringProperty emailProperty() {
         return email;
     }
-    public void setEmail(String emailNuevo) {
-        String emailViejo = this.email;
-        this.email = emailNuevo;
-        propertyChangeSupport.firePropertyChange("email", emailViejo, emailNuevo);
+
+    public String getEmail() {
+        return email.get();
     }
-    public Date getFechaDeRegistro() {
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+
+    public ObjectProperty<Date> fechaDeRegistroProperty() {
         return fechaDeRegistro;
     }
-    public void setFechaDeRegistro(Date fechaDeRegistroNuevo) {
-        Date fechaDeRegistroViejo = this.fechaDeRegistro;
-        this.fechaDeRegistro = fechaDeRegistroNuevo;
-        propertyChangeSupport.firePropertyChange("fecha", fechaDeRegistroViejo, fechaDeRegistroNuevo);
+
+    public Date getFechaDeRegistro() {
+        return fechaDeRegistro.get();
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
+    public void setFechaDeRegistro(Date fechaDeRegistro) {
+        this.fechaDeRegistro.set(fechaDeRegistro);
     }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
-    }
-
 }
